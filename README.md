@@ -1,50 +1,35 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Tooltip（ツールチップ）は、ユーザーインターフェース（UI）において、要素（例えば、ボタンやリンク）にマウスオーバーした際に表示される小さな補足情報のことです。主に、ボタンやアイコンなどに対して、ユーザーがその要素の機能や目的を理解するためのヒントや説明を提供するために使用される。
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. 補足情報の表示: ボタンやアイコンにマウスオーバーすると、その要素が何をするものなのか、または追加情報を簡潔に表示
+2. 自動非表示: ツールチップは、ユーザーが要素からマウスを離すと、自動的に非表示
+3. 見た目がシンプル: 通常、ツールチップは小さなポップアップで、矢印がついていて、要素とツールチップの間に関連を示す
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+- アイコンボタン: アイコンだけのボタンがある場合、そのボタンが何をするのか分からないことがあります。このとき、ツールチップに説明を追加することで、ボタンの機能を直感的に理解できる
+- フォームフィールド: ユーザーが入力を始める前に、フィールドにマウスオーバーすると補足情報を表示することで、入力方法や期待されるフォーマットについて説明できる
+
+実際の使い方（例）
+例えば、以下のようなボタンにツールチップを追加する場合：
+
+ツールチップなし:
+ボタンに「ハート」アイコンがあり、何をするボタンか分からない。
+ツールチップあり:
+ボタンにマウスオーバーすると「お気に入りに追加」などのメッセージが表示され、ユーザーがそのボタンの機能を理解できる。
+
+```tsx
+import React from 'react';
+import Tooltip from '@mui/material/Tooltip';
+
+const MyButton: React.FC = () => {
+  return (
+    <Tooltip title="Click to add to favorites" arrow>
+      <button>♥</button>
+    </Tooltip>
+  );
+};
+
+export default MyButton;
 ```
